@@ -1,0 +1,10 @@
+extends common/layout
+
+block layout-content 
+  .main-content 
+    h1.page-title Dance Studios
+    each danceStudio in danceStudios  
+      div 
+        h2 #{danceStudio.name} 
+        div Description: #{danceStudio.description}
+        div Duration: #{danceStudio.duration} minutes
