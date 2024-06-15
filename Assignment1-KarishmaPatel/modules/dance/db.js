@@ -2,7 +2,7 @@ const mongoose = require("mongoose"); // Import Mongoose
 
 const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}`;
 
-// Set up DanceStudio Schema and model
+// DanceStudio Schema and model
 const DanceClassSchema = new mongoose.Schema({
   name: String,
   description: String,
@@ -11,19 +11,19 @@ const DanceClassSchema = new mongoose.Schema({
 
 const DanceStudio = mongoose.model("DanceStudio", DanceStudioSchema);
 
-// MONGODB FUNCTIONS
+
 async function connect() {
-  await mongoose.connect(dbUrl); // Connect to MongoDB
+  await mongoose.connect(dbUrl); 
 }
 
-// Get all dance Studioes from the danceStudioes collection
-async function getDanceStudioes() {
+// Get dance Studios 
+async function getDanceStudios() {
   await connect();
   return await DanceStudio.find({});
 }
 
-// Initialize danceStudioes collection with some data
-async function initializeDanceStudioes() {
+// Initialize danceStudioes collection 
+async function initializeDanceStudios() {
   const StudioList = [
     {
       name: "Bollywood",
@@ -44,19 +44,19 @@ async function initializeDanceStudioes() {
   await DanceStudio.insertMany(StudioList);
 }
 
-// Function to add a dance Studio to the danceStudioes collection
+// add dance Studio 
 async function addDanceStudio(StudioName, StudioDescription, StudioDuration) {
   let newDanceStudio = new DanceStudio({
     name: StudioName,
     description: StudioDescription,
     duration: StudioDuration,
   });
-  // This is the line which actually saves newDanceStudio to the DB
+  
   await newDanceStudio.save();
 }
 
 module.exports = {
-  getDanceStudioes,
-  initializeDanceStudioes,
+  getDanceStudios,
+  initializeDanceStudios,
   addDanceStudio,
 };

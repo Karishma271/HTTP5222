@@ -3,10 +3,10 @@ body {
   background-color:#222;
 }
 a {
-  color:yellow;
+  color:rgb(255, 0, 195);
 }
 a.button, button {
-  background-color:yellow;
+  background-color:rgb(255, 0, 195);
   color:#000;
   font-family:Arial, Helvetica, sans-serif;
   text-decoration:none;
