@@ -1,28 +1,30 @@
-const mongoose = require("mongoose"); // Import Mongoose
+const mongoose = require("mongoose");
 
+// MongoDB connection URL
 const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}`;
 
-// DanceStudio Schema and model
-const DanceClassSchema = new mongoose.Schema({
+// Define DanceStudio schema
+const DanceStudioSchema = new mongoose.Schema({
   name: String,
   description: String,
   duration: Number,
 });
 
+// Create DanceStudio model
 const DanceStudio = mongoose.model("DanceStudio", DanceStudioSchema);
 
-
+// Function to establish database connection
 async function connect() {
   await mongoose.connect(dbUrl); 
 }
 
-// Get dance Studios 
+// Function to get all dance studios
 async function getDanceStudios() {
   await connect();
   return await DanceStudio.find({});
 }
 
-// Initialize danceStudioes collection 
+// Function to initialize dance studios collection with dummy data
 async function initializeDanceStudios() {
   const StudioList = [
     {
@@ -44,7 +46,7 @@ async function initializeDanceStudios() {
   await DanceStudio.insertMany(StudioList);
 }
 
-// add dance Studio 
+// Function to add a new dance studio
 async function addDanceStudio(StudioName, StudioDescription, StudioDuration) {
   let newDanceStudio = new DanceStudio({
     name: StudioName,

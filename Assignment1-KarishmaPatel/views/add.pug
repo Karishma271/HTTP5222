@@ -1,0 +1,16 @@
+extends common/layout.pug
+
+block content
+  .container
+    h1.page-title Add New Studio
+    form(action='/add', method='post')
+      div
+        label(for='name') Name:
+        input(type='text', id='name', name='name', required)
+      div
+        label(for='description') Description:
+        textarea(id='description', name='description', rows='4', required)
+      div
+        label(for='duration') Duration (minutes):
+        input(type='number', id='duration', name='duration', min='1', required)
+      button.btn(type='submit') Add Studio

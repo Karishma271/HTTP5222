@@ -1,12 +1,11 @@
-doctype html 
-html 
+doctype html
+html(lang='en')
   head
-    meta(charset="utf-8") 
-    title Mongoose Test
-    link(rel="stylesheet", href="/css/styles.css")
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Feel Dance Academy
+    link(rel='stylesheet', href='/css/style.css')
   body
-    include header.pug
-    main#main
-      block layout-content 
-    footer#footer 
-      div &copy; Copyright HTTP5222, 2024.
+   include common/header.pug
+    block content
+    include common/footer.pug
