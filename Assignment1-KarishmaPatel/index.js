@@ -1,61 +1,44 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
-
-// Load environment variables
-dotenv.config();
-
 const db = require("./modules/dance/db");
 
-// Express app
-const app = express();
-const port = process.env.PORT || "8888";
+dotenv.config();
 
-// Application template 
+const app = express();
+const port = process.env.PORT || 8888;
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// Static files
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
 
-// Body parser middleware to handle form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Home page route
-app.get("/", async (request, response) => {
-  let danceStudios = await db.getDanceStudios();
- 
-  if (!danceStudios.length) {
+// Routes
+app.get("/", async (req, res) => {
+  let danceClasses = await db.getDanceStudios();
+  if (!danceClasses.length) {
     await db.initializeDanceStudios();
-    danceStudios = await db.getDanceStudios();
+    danceClasses = await db.getDanceStudios();
   }
-  response.render("index", { danceStudios: danceStudios });
+  res.render("index", { danceClasses });
 });
 
-// Add new studio form page
-app.get("/add", (request, response) => {
-  response.render("add");
+app.get("/add", (req, res) => {
+  res.render("add");
 });
 
-// Add new studio form submission
-app.post("/add", async (request, response) => {
-  const { name, description, duration } = request.body;
+app.post("/add", async (req, res) => {
+  const { name, description, duration } = req.body;
   await db.addDanceStudio(name, description, duration);
-  response.redirect("/");
+  res.redirect("/");
 });
 
-// About page route
-app.get("/about", (request, response) => {
-  response.render("about");
+app.get("/list", async (req, res) => {
+  const danceClasses = await db.getDanceStudios();
+  res.render("list", { danceClasses });
 });
 
-// Contact page route
-app.get("/contact", (request, response) => {
-  response.render("contact");
-});
-
-// Server listening
 app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

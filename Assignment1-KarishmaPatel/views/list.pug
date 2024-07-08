@@ -1,0 +1,9 @@
+extends common/layout
+
+block layout-content
+  h2 List of Dance Records
+  each danceClass in danceClasses
+    div
+      h3= danceClass.name
+      p= danceClass.description
+      p Duration: #{danceClass.duration} minutes

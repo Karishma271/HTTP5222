@@ -1,11 +1,11 @@
 doctype html
-html(lang='en')
+html
   head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Feel Dance Academy
-    link(rel='stylesheet', href='/css/style.css')
+    meta(charset="utf-8")
+    title Dance Booking System
+    link(rel="stylesheet", href="/css/styles.css")
   body
-   include common/header.pug
-    block content
-    include common/footer.pug
+    include header
+    main#main
+      block layout-content
+    include footer

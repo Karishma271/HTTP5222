@@ -1,13 +1,5 @@
-extends common/layout.pug
+extends common/layout
 
-block content
-  .container
-    h1.page-title Our Dance Studios
-    each studio, index in danceStudios
-      .dance-studio
-        img(src=`/images/studio${index + 1}.jpg`, alt=`${studio.name} Image`)
-        h2= studio.name
-        p= studio.description
-        p Duration: #{studio.duration} minutes
-    a.btn(href='/add') Add New Studio
-
+block layout-content
+  h2 Welcome to the Dance Booking System
+  p Use the navigation links above to add or view dance records.

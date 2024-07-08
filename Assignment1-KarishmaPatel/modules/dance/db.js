@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// MongoDB connection URL
+// MongoDB connection URL from environment variables
 const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}`;
 
 // Define DanceStudio schema
@@ -10,23 +10,31 @@ const DanceStudioSchema = new mongoose.Schema({
   duration: Number,
 });
 
-// Create DanceStudio model
+// Create DanceStudio model based on schema
 const DanceStudio = mongoose.model("DanceStudio", DanceStudioSchema);
 
-// Function to establish database connection
+// Function to connect to MongoDB
 async function connect() {
-  await mongoose.connect(dbUrl); 
+  try {
+    await mongoose.connect(dbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Failed to connect to MongoDB", error);
+  }
 }
 
-// Function to get all dance studios
+// Function to retrieve all dance studios
 async function getDanceStudios() {
-  await connect();
-  return await DanceStudio.find({});
+  await connect(); // Connect to MongoDB
+  return await DanceStudio.find({}); // Retrieve all documents from DanceStudio collection
 }
 
-// Function to initialize dance studios collection with dummy data
+// Function to initialize dance studios with some data
 async function initializeDanceStudios() {
-  const StudioList = [
+  const studioList = [
     {
       name: "Bollywood",
       description: "A vibrant and energetic dance form.",
@@ -39,22 +47,26 @@ async function initializeDanceStudios() {
     },
     {
       name: "Krump",
-      description: "A street dance characterized by free, expressive, exaggerated, and highly energetic movement.",
+      description:
+        "A street dance characterized by free, expressive, exaggerated, and highly energetic movement.",
       duration: 50,
     },
   ];
-  await DanceStudio.insertMany(StudioList);
+
+  await connect(); // Connect to MongoDB
+  await DanceStudio.deleteMany({}); // Clear existing data
+  await DanceStudio.insertMany(studioList); // Insert new data
 }
 
 // Function to add a new dance studio
-async function addDanceStudio(StudioName, StudioDescription, StudioDuration) {
-  let newDanceStudio = new DanceStudio({
-    name: StudioName,
-    description: StudioDescription,
-    duration: StudioDuration,
+async function addDanceStudio(name, description, duration) {
+  await connect(); // Connect to MongoDB
+  const newDanceStudio = new DanceStudio({
+    name,
+    description,
+    duration,
   });
-  
-  await newDanceStudio.save();
+  await newDanceStudio.save(); // Save new dance studio to the database
 }
 
 module.exports = {
