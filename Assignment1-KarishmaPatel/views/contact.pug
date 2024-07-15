@@ -1,11 +1,13 @@
-extends common/layout.pug
+extends common/layout
 
-block content
+block layout-content
   .container
     h1.page-title Contact Us
-    img(src='/images/contact.jpg', alt='Contact Us Image')
-    p You can contact us at any time using the following methods:
-    ul
-      li Phone: +919723007063
-      li Email: info@dancestudio.com
-      li Address: 33, Nanubhai Tower, Mehshana Nagar, Vadodara, Gujarat, India.
+    .contact-wrapper
+      img(src='./images/studio3.jpg', alt='Contact Image', class='contact-image')
+      .contact-info
+        p You can contact us at any time using the following methods:
+        ul
+          li Phone: +919723007063
+          li Email: info@dancestudio.com
+          li Address: 33, Nanubhai Tower, Mehshana Nagar, Vadodara, Gujarat, India.

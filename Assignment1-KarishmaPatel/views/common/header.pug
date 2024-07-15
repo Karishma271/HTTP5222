@@ -1,7 +1,16 @@
 header
-  h1 Dance Booking System
-  nav
-    ul
-      li: a(href="/") Home
-      li: a(href="/add") Add Dance Record
-      li: a(href="/list") List Dance Records
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+    .container.d-flex.justify-content-between.align-items-center
+      a.navbar-brand.d-flex.align-items-center(href="/")
+        img(src="/images/logo.jpg", alt="Feel Dance Academy Logo", class="logo")
+        span.brand-text Feel Dance Academy
+      button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav.ms-auto
+          li.nav-item
+            a.nav-link(href="/") Home
+          li.nav-item
+            a.nav-link(href="/about") About Us
+          li.nav-item
+            a.nav-link(href="/contact") Contact Us

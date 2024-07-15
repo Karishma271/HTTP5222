@@ -1,15 +1,17 @@
 extends common/layout
 
 block layout-content
-  h2 Add Dance Record
-  form(action="/add", method="post")
-    label(for="name") Name:
-    input(type="text", id="name", name="name", required)
-    br
-    label(for="description") Description:
-    textarea(id="description", name="description", rows="4", cols="50", required)
-    br
-    label(for="duration") Duration (in minutes):
-    input(type="number", id="duration", name="duration", required)
-    br
-    button(type="submit") Add Dance Record
+  .add-dance-record-container.d-flex.justify-content-center.align-items-center
+    .inner-container.p-4.bg-white.shadow-sm.rounded
+      h2.mb-3.text-center Add Dance Record
+      form(action="/add", method="post")
+        .form-group.mb-3
+          label(for="name") Dance Style:
+          input.form-control(type="text", id="name", name="name", placeholder="Enter the dance style", required)
+        .form-group.mb-3
+          label(for="description") Description:
+          textarea.form-control(id="description", name="description", rows="3", placeholder="Describe the dance", required)
+        .form-group.mb-3
+          label(for="duration") Duration (in hours):
+          input.form-control(type="number", id="duration", name="duration", placeholder="Enter duration", required)
+        button.btn.btn-custom(type="submit") Add Dance Record

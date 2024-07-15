@@ -1,10 +1,12 @@
-extends common/layout.pug
+extends common/layout
 
-block content
-  .container
-    h1.page-title About Us
-    img(src='/images/about.jpg', alt='About Us Image')
-    p Welcome to Feel Dance Academy! We provide professional dance training in various styles.
-    p Our experienced instructors are dedicated to helping you reach your full potential.
-
-
+block layout-content
+  .container-fluid.bg-light.py-3
+    .container.text-center
+      h1.page-title.mb-3 About Us
+      .row.align-items-center.justify-content-center.my-4
+        .col-lg-5.text-center.text-lg-end.mb-4.mb-lg-0
+          img(src='/images/studio2.jpg', alt='About Us Image', class='about-image img-fluid rounded shadow')
+        .col-lg-7.text-center.text-lg-start
+          h2.page-title.mb-3 Our Story
+          p.mb-4 Discover our passion for dance at Feel Dance Academy. We offer professional training in various dance styles, supported by dedicated instructors who are committed to helping you achieve your full potential.

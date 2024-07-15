@@ -1,5 +1,12 @@
 extends common/layout
 
 block layout-content
-  h2 Welcome to the Dance Booking System
-  p Use the navigation links above to add or view dance records.
+  section.welcome-container
+    .container
+      .row.justify-content-center.align-items-center.text-center
+        .col-md-8
+          h2.welcome-heading Welcome to the Dance Booking System
+          img.welcome-image(src="/images/studio1.jpg", alt="Dance Studio", class="img-fluid mt-4 ")
+          p.welcome-text.mt-4 Discover a variety of dance styles and book your favorite dance classes with us. Join our community and start dancing today!
+          a.btn.btn-primary.mt-3(href="/add") Add Dance Record
+          a.btn.btn-secondary.mt-3.ms-2(href="/list") List Dance Records

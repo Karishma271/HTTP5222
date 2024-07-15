@@ -6,7 +6,7 @@ const db = require("./modules/dance/db");
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 8888;
+const port = process.env.PORT || 8001;
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -22,6 +22,14 @@ app.get("/", async (req, res) => {
     danceClasses = await db.getDanceStudios();
   }
   res.render("index", { danceClasses });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact");
 });
 
 app.get("/add", (req, res) => {

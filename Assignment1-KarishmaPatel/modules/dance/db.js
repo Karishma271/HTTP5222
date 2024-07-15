@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 // MongoDB connection URL from environment variables
-const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPWD}@${process.env.DBHOST}`;
+const dbUrl = `mongodb+srv://karishma27:Karishma27@karishma.u9w0v8t.mongodb.net/?retryWrites=true&w=majority&appName=Karishma`;
 
 // Define DanceStudio schema
 const DanceStudioSchema = new mongoose.Schema({
@@ -16,10 +17,7 @@ const DanceStudio = mongoose.model("DanceStudio", DanceStudioSchema);
 // Function to connect to MongoDB
 async function connect() {
   try {
-    await mongoose.connect(dbUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(dbUrl);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);
@@ -47,8 +45,7 @@ async function initializeDanceStudios() {
     },
     {
       name: "Krump",
-      description:
-        "A street dance characterized by free, expressive, exaggerated, and highly energetic movement.",
+      description: "A street dance characterized by free, expressive, exaggerated, and highly energetic movement.",
       duration: 50,
     },
   ];

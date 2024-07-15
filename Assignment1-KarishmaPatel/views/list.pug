@@ -1,9 +1,15 @@
 extends common/layout
 
 block layout-content
-  h2 List of Dance Records
-  each danceClass in danceClasses
-    div
-      h3= danceClass.name
-      p= danceClass.description
-      p Duration: #{danceClass.duration} minutes
+  .container-fluid.py-5
+    .container
+      h2.text-center.mb-4 List of Dance Records
+
+      .row.row-cols-1.row-cols-md-2.g-4.justify-content-center
+        each danceClass in danceClasses
+          .col.mb-4
+            .card.custom-card
+              .card-body.text-center
+                h3.card-title.mb-3= danceClass.name
+                p.card-text.mb-3= danceClass.description
+                p.card-text.mb-0 Duration: #{danceClass.duration} hours
